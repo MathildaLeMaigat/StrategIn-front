@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@200;300&display=swap");
+
+body {
+  font-family: "Exo", sans-serif;
+  padding: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+h1 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  /* color: orange; */
+  font-weight: bold;
+}
+/* Register + Login */
+
+.register-container,
+.login-container {
+  border: solid orange 2px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 500px;
+}
+
+.register-container input,
+.login-container input {
+  width: 70%;
+  height: 40px;
+  border: none;
+  border-bottom: grey 1px solid;
+  outline: none;
+  margin-bottom: 40px;
+}
+
+.register-button,
+.login-button {
+  width: 70%;
+  background-color: orange;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 40px;
   color: white;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.register-underline {
+  color: black;
+  font-size: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Users */
+
+.users-container {
+  border: red 1px solid;
+  margin-bottom: 10px;
+  font-size: 15px;
+  width: 300px;
+}
+
+.users-container p {
+}
+
+.users-container span {
+  font-size: 20px;
 }
