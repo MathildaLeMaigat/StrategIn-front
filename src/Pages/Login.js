@@ -21,9 +21,9 @@ const Login = ({ handleToken, errorMessage, setErrorMessage }) => {
           password: password,
         }
       );
-      console.log(response.data);
+      //   console.log(response.data);
       if (response.data) {
-        console.log("victory!");
+        // console.log("victory!");
         handleToken(response.data.token);
         navigate("/users");
       }
@@ -55,6 +55,7 @@ const Login = ({ handleToken, errorMessage, setErrorMessage }) => {
             setPassword(event.target.value);
           }}
         />
+
         <p style={{ color: "red" }}>{errorMessage}</p>
         <button className="login-button">Log In</button>
         <Link to="/" className="register-underline">

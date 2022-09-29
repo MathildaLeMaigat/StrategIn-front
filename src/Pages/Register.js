@@ -18,19 +18,19 @@ const Register = ({ handleToken, errorMessage, setErrorMessage }) => {
       const response = await axios.post(
         "https://strategin-back.herokuapp.com/register",
         {
-          email: email,
           username: username,
+          email: email,
           password: password,
         }
       );
-      console.log("ici", response.data.token);
+      //   console.log(response.data.token);
 
       if (response.data) {
-        console.log("victory!");
+        // console.log("victory!");
         handleToken(response.data.token);
         navigate("/users");
       }
-      console.log(handleToken);
+      //   console.log(handleToken);
     } catch (error) {
       console.log({ error: error.response });
       console.log("catch", error);

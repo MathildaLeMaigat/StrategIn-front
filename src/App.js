@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import Users from "./Pages/Users";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
@@ -24,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Header userToken={userToken} handleToken={handleToken} />
         <Routes>
           <Route
             path="/"
@@ -45,8 +48,9 @@ function App() {
               />
             }
           />
-          <Route path="/users" element={<Users />} />
+          <Route path="/users" element={<Users userToken={userToken} />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

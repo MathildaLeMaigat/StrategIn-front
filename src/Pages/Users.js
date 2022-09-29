@@ -1,10 +1,14 @@
 // Imports
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Users = () => {
+const Users = ({ userToken }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     try {
       const fetchData = async () => {
@@ -20,26 +24,32 @@ const Users = () => {
       console.log({ error: error.message });
     }
   }, []);
-  return isLoading ? (
-    <h1>Loading...</h1>
+  return userToken ? (
+    isLoading ? (
+      <h1>Loading...</h1>
+    ) : (
+      <div>
+        <h1 className="user-title">Utilisateurs</h1>
+        <div className="users-big-container">
+          {data.users.map((elem, index) => {
+            return (
+              <div key={index} className="users-container">
+                <div className="users-left">
+                  <p>Nom d'Utilisateur: </p>
+                  <p> Email: </p>
+                </div>
+                <div className="users-right">
+                  <p>{elem.account.username}</p>
+                  <p>{elem.email}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    )
   ) : (
-    <div>
-      <h1 className="container">Users</h1>
-      {data.users.map((elem, index) => {
-        return (
-          <div key={index} className="users-container">
-            <p>
-              <span>Username: </span>
-              {elem.account.username}
-            </p>
-            <p>
-              <span> Email: </span>
-              {elem.email}
-            </p>
-          </div>
-        );
-      })}
-    </div>
+    navigate("/login")
   );
 };
 
