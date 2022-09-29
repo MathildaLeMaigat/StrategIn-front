@@ -3,16 +3,17 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const Login = ({ handleToken, errorMessage, setErrorMessage }) => {
+const Login = ({ handleToken }) => {
   // STATES
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessage("");
+    setErrorMessage(null);
     try {
       const response = await axios.post(
         "https://strategin-back.herokuapp.com/login",
@@ -29,8 +30,9 @@ const Login = ({ handleToken, errorMessage, setErrorMessage }) => {
       }
     } catch (error) {
       console.log({ error: error.response });
-      if (error.response.status === 401)
+      if (error.response.status === 401 || error.response.status === 400) {
         setErrorMessage("Sorry! your email/password are incorrects");
+      }
     }
   };
 

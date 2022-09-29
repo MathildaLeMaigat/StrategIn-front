@@ -3,33 +3,43 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const Register = ({ handleToken, errorMessage, setErrorMessage }) => {
+const Register = ({ handleToken }) => {
   // States
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setErrorMessage("");
-    try {
-      const response = await axios.post(
-        "https://strategin-back.herokuapp.com/register",
-        {
-          username: username,
-          email: email,
-          password: password,
-        }
-      );
-      //   console.log(response.data.token);
+    setErrorMessage(null);
+    const formData = new FormData();
 
-      if (response.data) {
-        // console.log("victory!");
-        handleToken(response.data.token);
-        navigate("/users");
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    try {
+      if (email && username && password) {
+        const response = await axios.post(
+          "https://strategin-back.herokuapp.com/register",
+          {
+            username: username,
+            email: email,
+            password: password,
+          }
+        );
+        console.log(response.data);
+        if (response.data) {
+          // console.log("victory!");
+          handleToken(response.data.token);
+          navigate("/users");
+        }
+      } else {
+        setErrorMessage("Please fill in all fields");
       }
+
       //   console.log(handleToken);
     } catch (error) {
       console.log({ error: error.response });
@@ -37,6 +47,7 @@ const Register = ({ handleToken, errorMessage, setErrorMessage }) => {
       if (error.response.status === 409) {
         setErrorMessage("Sorry! This email has already an account");
       }
+      setErrorMessage("");
     }
   };
 
@@ -67,7 +78,7 @@ const Register = ({ handleToken, errorMessage, setErrorMessage }) => {
           onChange={(event) => {
             setPassword(event.target.value);
           }}
-        />{" "}
+        />
         <p style={{ color: "red" }}>{errorMessage}</p>
         <button className="register-button">Subscribe</button>
         <Link to="/login" className="register-underline">

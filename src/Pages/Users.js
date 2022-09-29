@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Rings } from "react-loader-spinner";
 
 const Users = ({ userToken }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +27,9 @@ const Users = ({ userToken }) => {
   }, []);
   return userToken ? (
     isLoading ? (
-      <h1>Loading...</h1>
+      <div className="loader">
+        <Rings type="Puff" color="orange" height={120} width={120} />
+      </div>
     ) : (
       <div>
         <h1 className="user-title">Utilisateurs</h1>

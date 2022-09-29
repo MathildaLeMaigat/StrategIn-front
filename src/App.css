@@ -2,6 +2,7 @@
 
 body {
   font-family: "Exo", sans-serif;
+  height: 100vh;
 }
 
 .container {
@@ -16,6 +17,12 @@ h1 {
   font-size: 40px;
   margin-bottom: 40px;
   font-weight: bold;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 /* Register + Login */
 

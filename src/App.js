@@ -12,7 +12,6 @@ import Header from "./Components/Header";
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
-  const [errorMessage, setErrorMessage] = useState("");
 
   const handleToken = (token) => {
     if (token) {
@@ -28,26 +27,8 @@ function App() {
       <Router>
         <Header userToken={userToken} handleToken={handleToken} />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <Register
-                handleToken={handleToken}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <Login
-                handleToken={handleToken}
-                errorMessage={errorMessage}
-                setErrorMessage={setErrorMessage}
-              />
-            }
-          />
+          <Route path="/" element={<Register handleToken={handleToken} />} />
+          <Route path="/login" element={<Login handleToken={handleToken} />} />
           <Route path="/users" element={<Users userToken={userToken} />} />
         </Routes>
         <Footer />
