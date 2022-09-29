@@ -80,7 +80,7 @@ const Register = ({ handleToken }) => {
           }}
         />
         <p style={{ color: "red" }}>{errorMessage}</p>
-        <button className="register-button">Subscribe</button>
+        <button className="register-button">Je m'inscrit !</button>
         <Link to="/login" className="register-underline">
           Tu as déjà un compte ? Connecte-toi !
         </Link>

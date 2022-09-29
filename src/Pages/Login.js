@@ -38,7 +38,7 @@ const Login = ({ handleToken }) => {
 
   return (
     <div className="container">
-      <h1>Log In</h1>
+      <h1>Se connecter</h1>
       <form className="login-container" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -59,7 +59,7 @@ const Login = ({ handleToken }) => {
         />
 
         <p style={{ color: "red" }}>{errorMessage}</p>
-        <button className="login-button">Log In</button>
+        <button className="login-button">Je me connecte !</button>
         <Link to="/" className="register-underline">
           Tu peux te créer un compte par ici !
         </Link>
