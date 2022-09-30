@@ -9,35 +9,36 @@ const Register = ({ handleToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMessage(null);
-    const formData = new FormData();
 
-    formData.append("username", username);
-    formData.append("email", email);
-    formData.append("password", password);
     try {
-      if (email && username && password) {
-        const response = await axios.post(
-          "https://strategin-back.herokuapp.com/register",
-          {
-            username: username,
-            email: email,
-            password: password,
+      if (password === confirmPassword) {
+        if (email && username && password && confirmPassword) {
+          const response = await axios.post(
+            "https://strategin-back.herokuapp.com/register",
+            {
+              username: username,
+              email: email,
+              password: password,
+            }
+          );
+          console.log(response.data);
+          if (response.data) {
+            // console.log("victory!");
+            handleToken(response.data.token);
+            navigate("/users");
           }
-        );
-        console.log(response.data);
-        if (response.data) {
-          // console.log("victory!");
-          handleToken(response.data.token);
-          navigate("/users");
+        } else {
+          setErrorMessage("Please fill in all fields");
         }
       } else {
-        setErrorMessage("Please fill in all fields");
+        setErrorMessage("Passwords does not match");
       }
 
       //   console.log(handleToken);
@@ -79,6 +80,15 @@ const Register = ({ handleToken }) => {
             setPassword(event.target.value);
           }}
         />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(event) => {
+            setConfirmPassword(event.target.value);
+          }}
+        />
+
         <p style={{ color: "red" }}>{errorMessage}</p>
         <button className="register-button">Je m'inscrit !</button>
         <Link to="/login" className="register-underline">
