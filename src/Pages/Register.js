@@ -28,9 +28,9 @@ const Register = ({ handleToken }) => {
               password: password,
             }
           );
-          console.log(response.data);
+          console.log("register", response.data);
           if (response.data) {
-            // console.log("victory!");
+            console.log("victory!");
             handleToken(response.data.token);
             navigate("/users");
           }
@@ -40,7 +40,6 @@ const Register = ({ handleToken }) => {
       } else {
         setErrorMessage("Passwords does not match");
       }
-
       //   console.log(handleToken);
     } catch (error) {
       console.log({ error: error.response });
@@ -48,7 +47,6 @@ const Register = ({ handleToken }) => {
       if (error.response.status === 409) {
         setErrorMessage("Sorry! This email has already an account");
       }
-      setErrorMessage("");
     }
   };
 

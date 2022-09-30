@@ -16,7 +16,7 @@ const Users = ({ userToken }) => {
         const response = await axios.post(
           "https://strategin-back.herokuapp.com/users"
         );
-        // console.log("users", response.data);
+        console.log("users", response.data);
         setData(response.data);
         setIsLoading(false);
       };
@@ -34,7 +34,7 @@ const Users = ({ userToken }) => {
       <div>
         <h1 className="user-title">Utilisateurs</h1>
         <div className="users-big-container">
-          {data.users.map((elem, index) => {
+          {data.map((elem, index) => {
             return (
               <div key={index} className="users-container">
                 <div className="users-left">
@@ -42,7 +42,7 @@ const Users = ({ userToken }) => {
                   <p> Email: </p>
                 </div>
                 <div className="users-right">
-                  <p>{elem.account.username}</p>
+                  <p>{elem.username}</p>
                   <p>{elem.email}</p>
                 </div>
               </div>
