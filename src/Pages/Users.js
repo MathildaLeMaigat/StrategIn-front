@@ -16,7 +16,7 @@ const Users = ({ userToken }) => {
         const response = await axios.post(
           "https://strategin-back.herokuapp.com/users"
         );
-        console.log("users", response.data);
+        // console.log("users", response.data);
         setData(response.data);
         setIsLoading(false);
       };
@@ -25,6 +25,13 @@ const Users = ({ userToken }) => {
       console.log({ error: error.message });
     }
   }, []);
+
+  const handleDelete = (index) => {
+    const newTab = [...data];
+    newTab.splice(index, 1);
+    setData(newTab);
+  };
+
   return userToken ? (
     isLoading ? (
       <div className="loader">
@@ -44,6 +51,14 @@ const Users = ({ userToken }) => {
                 <div className="users-right">
                   <p>{elem.username}</p>
                   <p>{elem.email}</p>
+                </div>
+                <div
+                  className="users-delete"
+                  onClick={() => {
+                    handleDelete(index);
+                  }}
+                >
+                  X
                 </div>
               </div>
             );

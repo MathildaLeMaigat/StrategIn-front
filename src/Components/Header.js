@@ -5,14 +5,30 @@ const Header = ({ userToken, handleToken }) => {
   return (
     <div className="header-container">
       {userToken && (
-        <button
-          onClick={() => {
-            handleToken();
-            navigate("/login");
-          }}
-        >
-          Déconnexion
-        </button>
+        <div className="header-container-v2">
+          <button
+            onClick={() => {
+              navigate("/projects");
+            }}
+          >
+            Projets
+          </button>
+          <button
+            onClick={() => {
+              navigate("/users");
+            }}
+          >
+            Users
+          </button>
+          <button
+            onClick={() => {
+              handleToken();
+              navigate("/login");
+            }}
+          >
+            Déconnexion
+          </button>
+        </div>
       )}
     </div>
   );

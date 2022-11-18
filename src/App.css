@@ -116,6 +116,21 @@ h1 {
   align-items: center;
 }
 
+.users-delete {
+  cursor: pointer;
+}
+
+/* Tasks */
+
+.tasks-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  margin-top: 15px;
+}
+
 /* Footer */
 .footer {
   display: flex;
@@ -139,6 +154,10 @@ h1 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+
+.header-container-v2 > button {
+  margin-right: 40px;
 }
 
 .header-container button {
